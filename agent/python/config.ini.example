@@ -1,0 +1,13 @@
+[server]
+url = http://localhost:8000
+verify_ssl = true
+
+[agent]
+token = 
+interval = 60
+log_file = agent.log
+log_level = INFO
+
+[computer]
+; Override the detected hostname (leave blank to auto-detect)
+hostname = 

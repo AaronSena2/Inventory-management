@@ -140,9 +140,11 @@
         const path = window.location.pathname;
         document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
             const href = link.getAttribute('href') || '';
-            if (href !== '/' && path.startsWith(href)) {
-                link.classList.add('active');
-            } else if (href === '/dashboard' && (path === '/' || path === '/dashboard')) {
+            if (href === '/dashboard') {
+                if (path === '/' || path === '/dashboard') {
+                    link.classList.add('active');
+                }
+            } else if (href !== '/' && (path === href || path.startsWith(href + '/'))) {
                 link.classList.add('active');
             }
         });

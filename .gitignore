@@ -1,0 +1,15 @@
+# Python
+agent/python/__pycache__/
+agent/python/*.pyc
+agent/python/agent.log
+agent/python/config.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

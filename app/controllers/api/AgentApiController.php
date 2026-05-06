@@ -23,8 +23,8 @@ class AgentApiController extends Controller
             $this->json(['error' => 'hostname is required'], 422);
         }
 
-        // Generate a token
-        $token     = bin2hex(random_bytes((int)AGENT_TOKEN_LENGTH / 2));
+        // Generate a token (AGENT_TOKEN_LENGTH bytes → 2× hex chars)
+        $token     = bin2hex(random_bytes(AGENT_TOKEN_LENGTH));
         $tokenHash = hash('sha256', $token);
 
         $computerModel = new Computer();

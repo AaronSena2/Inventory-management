@@ -395,6 +395,9 @@ def detect_package_manager() -> str:
     return ""
 
 
+MAX_OUTPUT_LENGTH = 65535  # Max characters captured from command stdout/stderr
+
+
 def run_shell(cmd: str, timeout: int = 300) -> tuple[int, str, str]:
     """Run a shell command, return (exit_code, stdout, stderr)."""
     try:
@@ -405,7 +408,7 @@ def run_shell(cmd: str, timeout: int = 300) -> tuple[int, str, str]:
             text=True,
             timeout=timeout,
         )
-        return result.returncode, result.stdout[:65535], result.stderr[:65535]
+        return result.returncode, result.stdout[:MAX_OUTPUT_LENGTH], result.stderr[:MAX_OUTPUT_LENGTH]
     except subprocess.TimeoutExpired:
         return 1, "", f"Command timed out after {timeout}s"
     except Exception as e:
@@ -547,7 +550,7 @@ def agent_loop(cfg: configparser.ConfigParser, logger: logging.Logger) -> None:
             # Heartbeat
             logger.debug("Sending heartbeat...")
             client.heartbeat(system_info, software)
-            logger.info(f"Heartbeat sent. RAM={system_info['ram_gb']}GB Software={len(software)}")
+            logger.info("Heartbeat sent. RAM=%.1fGB Software=%d", system_info['ram_gb'], len(software))
 
             # Poll commands
             commands = client.get_commands()

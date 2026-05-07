@@ -15,6 +15,8 @@ A full-stack **Computer Inventory Tracking and Remote Management** web applicati
 7. [Apache / Nginx VHost](#apache--nginx-vhost)
 8. [Default Credentials](#default-credentials)
 9. [Agent Setup](#agent-setup)
+   - [Cross-platform (Python)](#cross-platform-python-agent)
+   - [Windows service (inventory_agent.exe)](#windows-agent--inventory_agentexe)
 10. [REST API Reference](#rest-api-reference)
 11. [Security Hardening](#security-hardening)
 
@@ -30,6 +32,7 @@ A full-stack **Computer Inventory Tracking and Remote Management** web applicati
 - **Live dashboard** – online/offline stats, auto-refreshing every 30 s
 - **REST API** – agent communication + admin API with JSON responses
 - **Python agent** – cross-platform (Windows, Linux, macOS), auto-registers, executes commands
+- **Windows agent** – `inventory_agent.exe` installs as a Windows service with auto-start on boot
 
 ---
 
@@ -50,7 +53,8 @@ PHP extensions required: `pdo`, `pdo_mysql`, `json`, `session`, `mbstring`
 ## Directory Structure
 
 ```
-├── agent/python/          Python monitoring agent
+├── agent/python/          Python cross-platform agent
+├── agent/windows/         Windows service agent (inventory_agent.exe)
 ├── app/
 │   ├── controllers/       Web + API controllers
 │   ├── core/              Router, DB singleton, Auth, Base controller
@@ -183,6 +187,8 @@ UPDATE users SET password_hash = '<output_from_above>' WHERE username = 'admin';
 
 ## Agent Setup
 
+### Cross-platform (Python) agent
+
 ```bash
 cd agent/python
 
@@ -223,6 +229,47 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 systemctl enable --now inv-agent
 ```
+
+---
+
+### Windows agent – `inventory_agent.exe`
+
+The Windows agent runs as a **Windows service** and starts automatically with the computer.
+Full instructions are in [`agent/windows/README.md`](agent/windows/README.md).
+
+**Quick start (run all commands as Administrator):**
+
+```bat
+cd agent\windows
+
+:: 1. Install Python dependencies
+pip install -r requirements.txt
+
+:: 2. Configure (set server URL)
+copy config.ini.example "%ProgramData%\InventoryAgent\config.ini"
+notepad "%ProgramData%\InventoryAgent\config.ini"
+
+:: 3. Build the executable
+pyinstaller inventory_agent.spec
+
+:: 4. Install the service (auto-start)
+install.bat install
+
+:: 5. Start the service
+install.bat start
+```
+
+| Command | Effect |
+|---------|--------|
+| `install.bat install` | Install & register as auto-start service |
+| `install.bat start` | Start the service |
+| `install.bat stop` | Stop the service |
+| `install.bat restart` | Restart the service |
+| `install.bat status` | Show current service status |
+| `install.bat remove` | Uninstall the service |
+| `install.bat debug` | Run in foreground for testing |
+
+Config and logs are stored in `%ProgramData%\InventoryAgent\`.
 
 ---
 

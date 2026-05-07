@@ -1,0 +1,140 @@
+/* ============================================================
+   IT Inventory Manager – Custom Styles
+   ============================================================ */
+
+/* ---------- Body / Layout ---------- */
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.footer {
+    border-top: 1px solid #dee2e6;
+}
+
+/* ---------- Login ---------- */
+.login-card {
+    width: 100%;
+    max-width: 440px;
+    background: #1a1d23;
+    border-radius: 1rem;
+    color: #fff;
+}
+
+/* ---------- Navbar ---------- */
+.navbar-brand {
+    letter-spacing: 0.5px;
+}
+
+/* ---------- Stat Cards ---------- */
+.stat-card {
+    border-radius: 0.75rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: default;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ---------- Table Improvements ---------- */
+.table th {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #6c757d;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* ---------- Status Badges ---------- */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+}
+
+/* Coloured left border on detail rows */
+tr.status-online {
+    border-left: 3px solid #198754;
+}
+
+tr.status-offline {
+    border-left: 3px solid #dc3545;
+}
+
+tr.status-unknown {
+    border-left: 3px solid #6c757d;
+}
+
+/* ---------- Cards ---------- */
+.card {
+    border-radius: 0.75rem;
+}
+
+.card-header {
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+    font-size: 0.9rem;
+}
+
+/* ---------- Font Monospace ---------- */
+.font-monospace {
+    font-size: 0.85em;
+}
+
+/* ---------- Progress Bar ---------- */
+.progress {
+    border-radius: 0.5rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn-sm {
+    font-size: 0.8rem;
+}
+
+/* ---------- Scrollable Software Table ---------- */
+.table-responsive::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #adb5bd;
+    border-radius: 3px;
+}
+
+/* ---------- Sticky thead inside overflow div ---------- */
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 768px) {
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    h2.mb-0 {
+        font-size: 1.4rem;
+    }
+}

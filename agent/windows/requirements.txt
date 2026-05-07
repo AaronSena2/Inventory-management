@@ -1,0 +1,14 @@
+# Windows agent requirements
+# Install with: pip install -r requirements.txt
+
+# Core HTTP client
+requests>=2.28.0
+
+# System information (CPU, RAM, disk, network)
+psutil>=5.9.0
+
+# Windows service integration (win32service, win32serviceutil, servicemanager)
+pywin32>=306
+
+# Build tool – produces the inventory_agent.exe binary
+pyinstaller>=6.0.0

@@ -1,0 +1,25 @@
+# Python – cross-platform agent
+agent/python/__pycache__/
+agent/python/*.pyc
+agent/python/agent.log
+agent/python/config.ini
+
+# Python – Windows agent
+agent/windows/__pycache__/
+agent/windows/*.pyc
+agent/windows/config.ini
+agent/windows/agent.log
+# PyInstaller build artefacts
+agent/windows/build/
+agent/windows/dist/
+agent/windows/*.spec.cache
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,18 @@
+[server]
+; Full URL of the IT Inventory Management server (no trailing slash)
+url = http://your-server-address:8000
+; Set to false to disable SSL certificate verification (not recommended in production)
+verify_ssl = true
+
+[agent]
+; Agent authentication token – populated automatically after first registration.
+; Leave blank on first run; the agent will register and write the token here.
+token =
+; Heartbeat interval in seconds (default: 60)
+interval = 60
+; Logging level: DEBUG, INFO, WARNING, ERROR
+log_level = INFO
+
+[computer]
+; Override the hostname reported to the server (leave blank to use system hostname)
+hostname =
